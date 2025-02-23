@@ -1,0 +1,718 @@
+<html>
+<head>
+<style>	
+	h1 {
+		color: #7157ff;
+	}
+
+	hr {
+		display: block;
+		border: 0;
+		border-top: 3px solid #f90;
+		padding: 0; 
+	}
+	
+	textarea {
+		width: 70%;
+	}
+	
+	#div_main {
+		font-family: Sans-serif;
+		margin: auto;
+		margin-top: 30px;
+		width: 500px;
+	}
+	
+	#div_left {
+		width: 150px;
+		display: inline-block;
+		float: left;
+	}
+	
+	#div_left p {
+		margin-bottom: 19px;
+	}
+	
+	#div_right {
+		width: 350px;
+		display: inline-block;
+		float: right;
+	}
+	
+	.clear {
+		clear: both;
+	}
+</style>
+<script>function lti_launch( vars, target ) {
+						var query = '';
+						var new_tab = false;
+
+						for(var key in vars) {
+							if(query.length == 0) {
+								query += '?' + key + '=' + encodeURIComponent(vars[key]);
+							}
+							else {
+								query += '&' + key + '=' + encodeURIComponent(vars[key]);
+							}
+						}
+
+						var url = '/d2l/customization/pearsonlti/6606/Launch' + query;(target == '_blank') ? window.open( url, '_blank' ) : location.replace( url );}</script><script src="https://s.brightspace.com/lib/bsi/2024.11.269/unbundled/embeds.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script><script src="https://s.brightspace.com/lib/bsi/2024.11.269/unbundled/mathjax.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+						if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+								elm.setAttribute('style', 'display: block; height: 0.5rem;');
+							});
+
+							window.D2L.MathJax.loadMathJax({
+								outputScale: 1.5,
+								renderLatex: true,
+								enableMML3Support: false
+							});
+						}
+					});</script><script src="https://s.brightspace.com/lib/bsi/2024.11.269/unbundled/prism.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script src="https://s.brightspace.com/lib/bsi/2024.11.269/unbundled/creator.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', async () => {
+					const activities = [];
+					const practices = [];
+					const allPractices = document.querySelectorAll('.d2l-practice');
+					const elements = document.querySelectorAll('.d2l-element');
+					let layouts = [...document.querySelectorAll('.d2l-cplus-layout')];
+					const tables = document.querySelectorAll('table');
+					const contentStylerStyleLinks = document.querySelectorAll('head > link[href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"]');
+					const contentStylerOverides = document.querySelectorAll('head > link[href^="/d2l/le/contentstyler/"][data-override="override"]');
+
+					layouts = layouts.filter((layout) => layout.closest('.d2l-element.mceNonEditable') === null);
+
+					for (const practice of allPractices) {
+						const activityContainer = practice.hasAttribute('data-d2l-activity-href');
+						if (activityContainer) {
+							activities.push(practice);
+						}
+						else {
+							practices.push(practice);
+						}
+					}
+
+					if (layouts.length > 0) {
+						window.D2L.Creator.convertLayouts(layouts);
+					}
+					if (elements.length > 0) {
+						window.D2L.Creator.convertElements(elements, 6606, '/content/', 'True');
+					}
+					if (activities.length > 0) {
+						window.D2L.Creator.convertPracticeActivities(activities, 6606, '/content/');
+					}
+					if (practices.length > 0) {
+						window.D2L.Creator.convertPractices(practices, 6606, '/content/');
+					}
+					if (contentStylerStyleLinks.length > 0 && contentStylerOverides.length > 0 && tables.length > 0) {
+						window.D2L.Creator.wrapTables(tables);
+					}
+				});</script><script>window.addEventListener('message', function(event) { 
+					if( !event.data ) {
+						return;
+					}
+
+					let params;
+					try {
+						params = JSON.parse( event.data );
+					}
+					catch {
+						return;
+					}
+					if( !params.subject || params.subject !== 'lti.frameResize' ) {
+						return;
+					}
+
+					const MAX_FRAME_HEIGHT = 10000;
+					if( !params.height || params.height < 1 || params.height > MAX_FRAME_HEIGHT ) {
+						console.warn( 'Invalid height value received, aborting' );
+						return;
+					}
+					const el = document.getElementsByTagName( 'iframe' );
+					for ( let i=0; i < el.length; i++ ) {
+						if( el[i].contentWindow === event.source ) {
+							el[i].style.height = params.height + 'px';
+
+							console.info( 'Setting iFrame height to ' + params.height );
+
+							if( el[i].getAttribute('lockwidth') !== 'true'){
+								el[i].style.width = '100%';
+								console.info( 'Setting iFrame width to 100%' );
+							}
+						}
+					}
+				});</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	
+	const error = {
+		model_name: {NONE: 0, EMPTY: 1},
+		product_type: {NONE: 0, EMPTY: 1, INVALID_OPTION: 2},
+		warranty: {NONE: 0, EMPTY: 1, NON_DIGITS: 2, NON_INTEGER: 3},
+		size: {NONE: 0, EMPTY: 1},
+		price: {NONE: 0, EMPTY: 1, NON_DIGITS: 2, NON_2DP: 3},
+		available_from: {NONE: 0, EMPTY: 1, WRONG_DATE: 2},
+		common: {NONE: 0, EMPTY: 1}
+	}
+	// create a error status class to track the error status through program execution stages
+	let error_status = {
+			model_name: error.model_name.EMPTY,
+			product_type: error.product_type.EMPTY,
+			warranty: error.warranty.EMPTY,
+			size: error.size.EMPTY,
+			price: error.price.EMPTY,
+			available_from: error.available_from.EMPTY,
+			
+			printErrorStatus: function () 
+			{
+				const error_debug_text = {
+					model_name: {0: "No error", 1: "Empty input"},
+					product_type: {0: "No error", 1: "Empty input", 2: "Invalid option entered"},
+					warranty: {0: "No error", 1: "Empty input", 2: "Non digits entered", 3: "Non integer entered"},
+					size: {0: "No error", 1: "Empty input"},
+					price: {0: "No error", 1: "Empty input", 2: "Non digits entered", 3: "Non 2 decimal value entered"},
+					available_from: {0: "No error", 1: "Empty input", 2: "Wrong date entered"}
+				}
+
+				const model_name_status = error_debug_text.model_name[this.model_name];
+				const product_type_status = error_debug_text.product_type[this.product_type];
+				const warranty_status = error_debug_text.warranty[this.warranty];
+				const size_status = error_debug_text.size[this.size];
+				const price_status = error_debug_text.price[this.price];
+				const available_from_status = error_debug_text.available_from[this.available_from];
+
+				const debug_text = `model_name: ${model_name_status}, product_type: ${product_type_status}, warranty: ${warranty_status}, size: ${size_status}, price: ${price_status}, available_from: ${available_from_status}`;
+				console.log(debug_text);
+
+			},
+
+			toCheckValidArray: function () 
+			{
+				const rtnArray = [this.product_type, this.warranty, this.price, this.available_from];
+				return rtnArray;
+			},
+
+			skipFormCheckValid: function ()
+			{
+				const memberArr = this.toCheckValidArray();
+				checkResult = memberArr.every((x) => x === error.common.EMPTY);
+				return checkResult;
+			},
+
+			toErrorHandleArray: function ()
+			{
+				const rtnArray = [this.model_name, this.product_type, this.warranty, this.size, this.price, this.available_from];
+				return rtnArray;
+			},
+
+			skipformErrorHandle: function ()
+			{
+				const memberArr = this.toErrorHandleArray();
+				checkResult = memberArr.every((x) => x === error.common.NONE);
+				return checkResult;
+			}
+	}
+
+	window.onload = function () {
+		
+		const initPass = formInit();
+
+		document.forms[0].onsubmit = function (evt) {
+
+			const isErrorHandled = formCheck();
+			if (isErrorHandled)
+			{
+				evt.preventDefault();
+				console.log("Form checks have failed, submit default behavior prevented");
+			}
+			else
+			{
+				console.log("Form checks have passed, allow submit to go through");
+			}
+		}
+
+	}
+
+	function formInit()
+	{
+		// initialize the html forms elements with required attributes for logical limits and format
+		console.log("------ formInit starts ------");
+		try {
+			// set the max and min for text and price
+			let elemPrice = document.getElementById('txtWarranty');
+			elemPrice.setAttribute("step", "0.01");
+			elemPrice.setAttribute("max", "30000");
+			elemPrice.setAttribute("min", "0");
+
+			let elemModel = document.getElementById('txtModel');
+			elemModel.setAttribute("maxlength", "22");
+
+			let elemWarranty = document.getElementById('txtSize');
+			elemWarranty.setAttribute("maxlength", "5");
+			elemWarranty.setAttribute("placeholder", "30");
+
+			let elemDescript = document.getElementById('txtDescription'); 
+			elemDescript.setAttribute("maxlength", "200");
+
+			$("textarea").on("keyup", 
+					function (e) {
+						const currText = $("textarea").val();
+						const textLength = currText.length.toString();
+						//console.log("Current length:", textLength);
+						$('#span_charNum').text(textLength);
+
+					}
+			);	
+
+			console.log("------ formInit done ------");
+			return true; 		
+		}
+		catch(err) {
+			console.log("Exception error in form initialization:");
+			console.log(err);
+			return false;
+		}
+		
+	}
+
+	function formCheck()
+	{
+		// main program is split into 3 parts - 1) check empty, 2) check valid, 3) error handling
+		console.log("------ formCheck starts ------");
+
+		error_status.printErrorStatus();
+
+		let errorsHandled = false;
+
+		formCheckEmpty();
+		formCheckValid();
+		errorsHandled = formErrorHandle();
+
+		error_status.printErrorStatus();
+		console.log("------ formCheck done ------");
+
+		return errorsHandled;
+	}
+
+	function formCheckEmpty()
+	{
+		// function purpose: check and flag out if any form elements are empty
+		console.log("--- formCheckEmpty starts ---");
+
+		// Input 1: Text element: Model name
+		const elemModel = document.getElementById('txtModel');
+		const valStrModel = elemModel.value;
+		if (valStrModel.length === 0)
+		{
+			//console.log("No text input in model name");
+			error_status.model_name = error.model_name.EMPTY;
+		}
+		else
+		{
+			//console.log("Some text input in model name:", valStrModel);
+			error_status.model_name = error.model_name.NONE;
+		}
+
+		// Input 2: Select element: Product Type
+		const elemSelect = document.getElementById('selectType');
+		const valStrSelect = elemSelect.options[elemSelect.selectedIndex].textContent; //.value
+		const valDefaultSelect = elemSelect.options[0].textContent;
+		if(valStrSelect === valDefaultSelect)
+		{
+			error_status.product_type = error.product_type.EMPTY;
+		}
+		else
+		{
+			//console.log("select option selected:", valStrSelect);
+			error_status.product_type = error.product_type.NONE;
+		}
+
+		// Input 3: Text element: Warranty (days)
+		const elemWarranty = document.getElementById('txtSize');
+		const valStrWarranty = elemWarranty.value;
+		if (valStrWarranty.length === 0)
+		{
+			//console.log("No text input in Warranty (days)");
+			error_status.warranty = error.warranty.EMPTY;
+		}
+		else
+		{
+			//console.log("Some text input in Warranty (days):", valStrWarranty);
+			error_status.warranty = error.warranty.NONE;
+		}		
+
+		// Input 4: Radio element: Size yes/no
+		const elemRadio = document.querySelector('input[name="radio_size"]:checked');
+		if (elemRadio === null)
+		{
+			//console.log("no radio selected");
+			error_status.size = error.size.EMPTY;
+		}
+		else
+		{
+			//console.log("One radio selected");
+			error_status.size = error.size.NONE;
+		}
+
+		// Input 5: Number element: Price ($)
+		const elemPrice = document.getElementById('txtWarranty');
+		const valStrPrice = elemPrice.value;
+		if (valStrPrice.length === 0)
+		{
+			//console.log("No number input in Price ($)");
+			error_status.price = error.price.EMPTY;
+		}
+		else
+		{
+			//console.log("Some number input in Price ($):", valStrPrice);
+			error_status.price = error.price.NONE;
+		}			
+
+		// Input 6: Date element: Available from
+		const elemDate = document.querySelector('input[type="date"]');
+		const valStrDate = elemDate.value;
+		if (valStrDate.length === 0)
+		{
+			//console.log("no date selected");
+			error_status.available_from = error.available_from.EMPTY;
+		}
+		else
+		{
+			//console.log("some date selected:", valStrDate);
+			error_status.available_from = error.available_from.NONE;
+		}
+		console.log("--- formCheckEmpty done ---");
+	}
+
+	function formCheckValid()
+	{
+		// function purpose: check and flag out if any form elements are invalid if each form element is NOT empty
+		if (error_status.skipFormCheckValid())
+		{
+			// if all form elements are empty, all form check valid routines can be skipped immediately
+			console.log("formCheckValid is skipped");
+			return false;
+		}
+
+		console.log("--- formCheckValid starts ---");
+
+		// Input 3: Text element: Warranty (days)
+		if (error_status.warranty !== error.warranty.EMPTY)
+		{
+			const elemWarranty = document.getElementById('txtSize');
+			const valStrWarranty = elemWarranty.value;
+			const valIntWarranty = parseInt(valStrWarranty);
+
+			if(isNaN(valIntWarranty))
+			{
+				error_status.warranty = error.warranty.NON_DIGITS;
+				console.log("formCheckValid: Invalid: warranty value entered is not a number: ", valStrWarranty);
+			}
+			else
+			{
+				// if number (all digits) is entered, check if integer or float by finding index of decimal point character
+				const dpIndex = valStrWarranty.indexOf(".");
+				if (dpIndex == -1)
+				{
+					error_status.warranty = error.warranty.NONE;
+					console.log("formCheckValid: Valid: no decimal point, warranty value entered is a integer: ", valStrWarranty);
+				}
+				else
+				{
+					error_status.warranty = error.warranty.NON_INTEGER;
+					console.log("formCheckValid: Invalid: decimal point found, warranty value entered is not a integer: ", valStrWarranty);
+				}
+			}	
+		}
+
+		// Input 5: Number element: Price ($)
+		if (error_status.price !== error.price.EMPTY)
+		{
+			const elemPrice = document.getElementById('txtWarranty');
+			const valStrPrice = elemPrice.value;
+			const valFloatPrice = parseFloat(valStrPrice);
+
+			if (isNaN(valFloatPrice))
+			{
+				error_status.price = error.price.NON_DIGITS;
+				console.log("formCheckValid: Warranty value entered is not a float: ", valStrPrice);
+			}
+			else
+			{
+				const dpIndex = valStrPrice.indexOf(".");
+				if (dpIndex !== -1)
+				{
+					// if decimal place character is found, it is a float, invoke split string to get substring
+					// Check if float constains only 1 dp or 2 dp substring
+					const afterDpStr = (valStrPrice.split("."))[1];
+					if (afterDpStr.length > 2)
+					{
+						// float contains more than 2 dp, set as wrong input
+						error_status.price = error.price.NON_2DP;
+						console.log("formCheckValid: price value entered is > 2 dp float: after decimal point:", afterDpStr)
+					}
+					else
+					{
+						// float contains 1 or 2 dp , set as correct input
+						error_status.price = error.price.NONE;
+						console.log("formCheckValid: price value entered is <= 2 dp float: after decimal point:", afterDpStr)
+					}
+				}
+				else
+				{
+					// if decimal place character is not found, it is an integer, allow input
+					error_status.price = error.price.NONE;
+					console.log("formCheckValid: valid, price value entered is integer without dp:", valStrPrice)
+				}
+			}			
+		}
+
+		// Input 2: Select element: Product Type
+		if (error_status.product_type !== error.product_type.EMPTY)
+		{
+			const productTypesCorrect = ["Head Gear", "Top", "Bottom", "Foot Wear"];
+
+			const elemSelect = document.getElementById('selectType');
+			const valStrSelect = elemSelect.options[elemSelect.selectedIndex].textContent;
+			
+			if(productTypesCorrect.includes(valStrSelect))
+			{
+				// if text content of selected option is found within correct product types array
+				error_status.product_type = error.product_type.NONE;
+				console.log("formCheckValid: valid, selected option is found within correct product types:", valStrSelect);
+			}
+			else
+			{
+				error_status.product_type = error.product_type.INVALID_OPTION;
+				console.log("formCheckValid: invalid, selected option is NOT found within correct product types:", valStrSelect);
+			}
+		}
+
+		// Input 6: Date element: Available from
+		if (error_status.available_from !== error.available_from.EMPTY)
+		{
+			const elemDate = document.querySelector('input[type="date"]');
+			const dateToTestYMD = elemDate.value;
+
+			const dateToTest = new Date(dateToTestYMD);
+			const yearTest = dateToTest.getFullYear(); 
+			const monthTest = dateToTest.getMonth() + 1;
+			const dayNowTest = dateToTest.getDate();
+
+			const dateNowUTC = new Date(Date.now());
+			const yearNowLocal = dateNowUTC.getFullYear();
+			const monthNowLocal = dateNowUTC.getMonth() + 1;
+			const dayNowLocal = dateNowUTC.getDate();
+
+			let isTestDateGreater = false;
+
+			if (yearTest > yearNowLocal)
+			{
+				isTestDateGreater = true;
+				console.log("Test year is greater");
+			}
+			else if (yearTest === yearNowLocal)
+			{
+				if(monthTest > monthNowLocal)
+				{
+					isTestDateGreater = true;
+					console.log("Test year = year now, Test month is greater");
+				}
+				else if (monthTest === monthNowLocal)
+				{
+					if(dayNowTest > dayNowLocal)
+					{
+						isTestDateGreater = true;
+						console.log("Test year = year now, Test month = month now, test day is greater");
+					}
+					else
+					{   // year same, month same, day to test <= day now
+						isTestDateGreater = false;
+						console.log("Test year = year now, Test month = month now, test day is same or smaller");
+					}
+				}
+			}
+
+			if (isTestDateGreater)
+			{
+				error_status.available_from = error.available_from.NONE;
+				console.log("formCheckValid: valid, date to test entered is after today")
+			}
+			else
+			{
+				error_status.available_from = error.available_from.WRONG_DATE;
+				console.log("formCheckValid: Invalid, date to test entered is NOT after today")
+			}
+
+			// console.log("elemDate value:", dateToTestYMD);
+			// console.log("DateToTest---------");
+			// console.log("DateToTest getYear", dateToTest.getFullYear());
+			// console.log("DateToTest getMonth", dateToTest.getMonth());
+			// console.log("DateToTest getDate", dateToTest.getDate());
+			// console.log("DateToTest getHours", dateToTest.getHours());
+			// console.log("dateNowUTC---------");
+			// console.log("dateNowUTC getYear", dateNowUTC.getFullYear());
+			// console.log("dateNowUTC getMonth", dateNowUTC.getMonth());
+			// console.log("dateNowUTC getDate", dateNowUTC.getDate());
+			// console.log("dateNowUTC getHours", dateNowUTC.getHours());
+		}
+
+		console.log("--- formCheckValid done ---");
+		return true;
+	}
+
+	function formErrorHandle()
+	{
+		// function purpose: based on error flagged out for any html form elements, process and generate html error messages to div element
+		const formColors = {
+			correct: "white",
+			wrong: "yellow"
+		}
+
+		let colorInputs = {
+			model_name: formColors.correct,
+			product_type: formColors.correct,
+			warranty: formColors.correct,
+			size: formColors.correct,
+			price: formColors.correct,
+			available_from: formColors.correct
+		}
+
+		for (const property in colorInputs) 
+		{
+			if(error_status[property] !== error.common.NONE)
+			{
+				colorInputs[property] = formColors.wrong;
+			}
+			else
+			{
+				colorInputs[property] = formColors.correct;
+			}
+		}
+		// JQuery is preferred to be used here because it can be concised to one statement
+		$("#txtModel").css("background-color", colorInputs.model_name);
+		$("#selectType").css("background-color", colorInputs.product_type);
+		$("#txtSize").css("background-color", colorInputs.warranty);
+		$("label[for='radio_size_yes']").css("background-color", colorInputs.size);
+		$("label[for='radio_size_no']").css("background-color", colorInputs.size);
+		$("#txtWarranty").css("background-color", colorInputs.price);
+		$("#dateAvailable").css("background-color", colorInputs.available_from);
+
+		if (error_status.skipformErrorHandle())
+		{
+			// if there are NO errors at all, error handling routines for all html form elements can be skipped
+			console.log("formErrorHandle is skipped");
+			return false;
+		}		
+		
+		console.log("--- formErrorHandle starts ---");
+
+		let errorText = {
+			model_name: "Model name is ",
+			product_type: "Product Type is ",
+			warranty: "Warranty is ",
+			size: "Size is ",
+			price: "Price is ",
+			available_from: "Available From is "
+		}
+
+		const error_warning_text = {
+			model_name: {0: "valid.", 1: "required."},
+			product_type: {0: "valid.", 1: "required.", 2: "required to be selected as a valid product category."},
+			warranty: {0: "valid.", 1: "required.", 2: "required to contain only digits.", 3: "required to be a integer value."},
+			size: {0: "valid.", 1: "required."},
+			price: {0: "valid.", 1: "required.", 2: "required to contain only digits.", 3: "required to be maximum 2 decimal points."},
+			available_from: {0: "valid.", 1: "required.", 2: "required to be selected as a date of tomorrow or later."}
+		}
+
+		let newElemUl = document.createElement("ul"); 
+
+		for (const property in errorText)
+		{
+			const error_status_code = error_status[property];
+
+			if(error_status_code !== error.common.NONE)
+			{
+				const error_warning_text_obj = error_warning_text[property];
+				const warning_text = error_warning_text_obj[error_status_code];
+				errorText[property] = errorText[property] + warning_text;
+
+				let newElemLi = document.createElement("li");
+				newElemLi.textContent = errorText[property];
+				newElemUl.appendChild(newElemLi);
+
+				console.log("formErrorHandle: property name: ", property);
+				console.log("formErrorHandle: error_status_code: ", error_status_code);
+				console.log("formErrorHandle: warning_text: ", warning_text);
+			}
+		}		
+
+		let elemDiv = document.getElementById("divMessage");
+		if (elemDiv.firstChild)
+		{
+			//if div message element has existing warning messages, remove them
+			elemDiv.removeChild(elemDiv.firstChild);
+		}
+
+		elemDiv.appendChild(newElemUl);
+
+		console.log("formErrorHandle: error text: ", errorText);
+		console.log("--- formErrorHandle is done ---");
+
+		return true;
+	}
+
+
+</script>
+
+</head>
+<body>
+<div id="div_main">
+	<h1>
+		Add Product
+	</h1>
+	<hr>
+	<form action="process.html" method="POST">
+	<div id="div_left">
+		<p>Model Name:</p>
+		<p>Product Type:</p>
+		<p>Warranty (days):</p>
+		<p>Size:</p>
+		<p>Price ($):</p>
+		<p>Available From:</p>
+	</div>
+	<div id="div_right">
+		<p><input type="text" id="txtModel" name="txtModel"></p>
+		<p>
+		<select id="selectType">
+			<option> Select a Type</option>
+			<option value="headgear">Head Gear</option>
+			<option value="top">Top</option>
+			<option value="bottom">Bottom</option>
+			<option value="footwear">Foot Wear</option>
+		</select>
+		</p>
+		<p><input type="text" id="txtSize" name="txtSize"></p>
+		<p><input type="radio" id="radio_size_yes" name="radio_size"><label for="radio_size_yes">Yes</label><input type="radio" id="radio_size_no" name="radio_size"><label for="radio_size_no">No</label></p>
+		<p><input type="number" id="txtWarranty" name="txtWarranty"></p>
+		<p><input type="date" id="dateAvailable" name="dateAvailable"></p>
+	</div>
+	<div class="clear"></div>
+	Description:
+	<br>
+	<textarea id="txtDescription" name="txtDescription"></textarea>
+	<br>
+	<span id="span_charNum">0</span> char(s)
+	<br>
+	<input type="submit" id="btnSubmit">
+	</form>
+	<div id="divMessage">
+	</div>
+</div>
+</body>
+</html>
